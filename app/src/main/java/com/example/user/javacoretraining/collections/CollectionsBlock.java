@@ -2,8 +2,12 @@ package com.example.user.javacoretraining.collections;
 
 import androidx.annotation.NonNull;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Набор тренингов по работе со строками в java.
@@ -27,8 +31,11 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask0(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        //TODO: implement it
-        return Collections.emptyList();
+        ArrayList<T> res = new ArrayList<T>();
+        res.addAll(firstList);
+        res.addAll(secondList);
+        res.sort(Comparator.reverseOrder());
+        return res;
     }
 
     /**
@@ -39,8 +46,14 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask1(@NonNull List<T> inputList) {
-        //TODO: implement it
-        return Collections.emptyList();
+        LinkedList<T> res = new LinkedList<>();
+        for(int i=0; i<inputList.size(); i++){
+            res.add(inputList.get(i));
+            for(int j=0; j<i; j++){
+                res.add(inputList.get(j));
+            }
+        }
+        return res;
     }
 
     /**
@@ -52,8 +65,9 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public boolean collectionTask2(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        //TODO: implement it
-        return true;
+        Set<T> s1 = new HashSet<>(firstList);
+        Set<T> s2 = new HashSet<>(secondList);
+        return s1.equals(s2);
     }
 
     /**
@@ -68,8 +82,22 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public List<T> collectionTask3(@NonNull List<T> inputList, int n) {
-        //TODO: implement it
-        return Collections.emptyList();
+        LinkedList<T> list = new LinkedList<>(inputList);
+        if(list.isEmpty()) return list;
+        if(n>=0) {
+            for (int i = 0; i < n; i++) {
+                T t = list.getLast();
+                list.removeLast();
+                list.addFirst(t);
+            }
+        } else {
+            for (int i = 0; i > n; i--) {
+                T t = list.getFirst();
+                list.removeFirst();
+                list.addLast(t);
+            }
+        }
+        return list;
     }
 
     /**
@@ -84,8 +112,12 @@ public class CollectionsBlock<T extends Comparable> {
      */
     public List<String> collectionTask4(@NonNull List<String> inputList, @NonNull String a,
                                         @NonNull String b) {
-        //TODO: implement it
-        return Collections.emptyList();
+        if(b == null || a == null) throw new NullPointerException();
+        LinkedList<String> list = new LinkedList<String>(inputList);
+        for(int i = 0; i<list.size(); i++){
+            if(list.get(i).equals(a)) list.set(i, b);
+        }
+        return list;
     }
 
     /*
