@@ -20,8 +20,7 @@ public class ElementaryTraining {
      * @return среднее значение для введенных чисел
      */
     public double averageValue(int firstValue, int secondValue) {
-        //TODO: implement it
-        return 0;
+        return (firstValue+secondValue) * 0.5;
     }
 
     /**
@@ -34,8 +33,7 @@ public class ElementaryTraining {
      * @return сумма новых трех чисел
      */
     public double complicatedAmount(int firstValue, int secondValue, int thirdValue) {
-        //TODO: implement it
-        return 0;
+        return (firstValue*2) + (secondValue-3) + Math.pow(thirdValue, 2);
     }
 
     /**
@@ -47,8 +45,7 @@ public class ElementaryTraining {
      * @return новое значение
      */
     public int changeValue(int value) {
-        //TODO: implement it
-        return value;
+        return value>3 ? value+10 : value-10;
     }
 
     /**
@@ -62,8 +59,14 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int swapNumbers(int value) {
-        //TODO: implement it
-        return 0;
+        if(value < 10) return value;
+        else{
+            char[] charArray = String.valueOf(value).toCharArray();
+            char t = charArray[0];
+            charArray[0] = charArray[charArray.length-1];
+            charArray[charArray.length-1] = t;
+            return Integer.parseInt(String.valueOf(charArray));
+        }
     }
 
     /**
@@ -77,7 +80,13 @@ public class ElementaryTraining {
      * @return новое число
      */
     public int zeroEvenNumber(int value) {
-        //TODO: implement it
-        return 0;
+        if(value < 10) return value;
+        char[] symbols = String.valueOf(value).toCharArray();
+
+        if(symbols.length%2 == 0)
+            for(int i=0; i<symbols.length; i+=2) symbols[i] = '0';
+        else
+            for(int i=1; i<symbols.length; i+=2) symbols[i] = '0';
+        return Integer.parseInt(String.valueOf(symbols));
     }
 }
