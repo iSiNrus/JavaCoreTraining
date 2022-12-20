@@ -1,5 +1,10 @@
 package com.example.user.javacoretraining.training;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Locale;
+
 /**
  * Набор тренингов по работе со строками в java.
  * <p>
@@ -22,8 +27,10 @@ public class StringsTraining {
      * элементов строки text
      */
     public String getOddCharacterString(String text) {
-        //TODO: implement it
-        return "";
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<text.length(); i++)
+            if(i%2 == 1) sb.append(text.charAt(i));
+        return sb.toString();
     }
 
     /**
@@ -37,8 +44,14 @@ public class StringsTraining {
      * вернуть пустой массив
      */
     public int[] getArrayLastSymbol(String text) {
-        //TODO: implement it
-        return new int[]{};
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i=0; i<text.length()-1; i++)
+            if(text.charAt(i) == text.charAt(text.length()-1))
+                list.add(i);
+        int[] res = new int[list.size()];
+        for(int i=0; i<res.length; i++)
+            res[i] = list.get(i);
+        return res;
     }
 
     /**
@@ -49,8 +62,12 @@ public class StringsTraining {
      * @return количество цифр в строке
      */
     public int getNumbersCount(String text) {
-        //TODO: implement it
-        return 0;
+        char[] digits = {'0','1','2','3','4','5','6','7','8','9' };
+        int amount = 0;
+        for(int i=0; i<text.length(); i++)
+            for (char digit : digits) if (digit == text.charAt(i)) amount++;
+
+        return amount;
     }
 
     /**
@@ -61,7 +78,18 @@ public class StringsTraining {
      * @return текст, где цифры заменены словами
      */
     public String replaceAllNumbers(String text) {
-        //TODO: implement it
+
+       text = text.replace("0", "zero");
+       text = text.replace("1", "one");
+       text = text.replace("2", "two");
+       text = text.replace("3", "three");
+       text = text.replace("4", "four");
+       text = text.replace("5", "five");
+       text = text.replace("6", "six");
+       text = text.replace("7", "seven");
+       text = text.replace("8", "eight");
+       text = text.replace("9", "nine");
+
         return text;
     }
 
@@ -73,8 +101,14 @@ public class StringsTraining {
      * @return измененная строка
      */
     public String capitalReverse(String text) {
-        //TODO: implement it
-        return text;
+        StringBuilder sb = new StringBuilder();
+        for(char symbol : text.toCharArray()){
+            String s = String.valueOf(symbol);
+            String sUp = s.toUpperCase();
+            if(s.equals(sUp)) sb.append(s.toLowerCase());
+            else sb.append(s.toUpperCase());
+        }
+        return sb.toString();
     }
 
 }
